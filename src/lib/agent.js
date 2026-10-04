@@ -1,4 +1,6 @@
 import { Agent } from "@openai/agents";
+import { checkServiceHealth, getProductionInfo, getRecentLogs } from "./tools";
+import { getPageStaticInfo } from "next/dist/build/analysis/get-page-static-info";
 
 export const OpsAgent = new Agent({
   name: "Ops Agent",
@@ -35,7 +37,6 @@ Answer in Hebrew with exacly 4 sections:
   הצעד הבא:
   `,
 
-
   model: "gpt-6-astra",
-  tools: [],
+  tools: [checkServiceHealth, getRecentLogs, getProductionInfo],
 });
